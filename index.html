@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday JANAT 🤍✨</title>
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Happy Birthday JANAT 🤍 (10/8)" />
+    <meta property="og:description" content="A special birthday surprise for JANAT ✨" />
+    <meta property="og:image" content="photo0.jpg" />
+    <meta property="og:type" content="website" />
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f19;
+            color: #ffffff;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            overflow-x: hidden;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        /* خلفية تفاعلية طايرة */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-item {
+            position: absolute;
+            bottom: -50px;
+            font-size: 1.5rem;
+            animation: flyUp 8s infinite linear;
+            opacity: 0.35;
+        }
+
+        @keyframes flyUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .main-wrapper {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: #facc15;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 0 0 25px rgba(250, 204, 21, 0.35);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: rgba(250, 204, 21, 0.1);
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            color: #facc15;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        .header p {
+            color: #9ca3af;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Wish Cards Grid */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(17, 24, 39, 0.85);
+            border: 1px solid #1f2937;
+            border-radius: 20px;
+            padding: 22px 18px;
+            width: 250px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #facc15;
+            box-shadow: 0 15px 35px rgba(250, 204, 21, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: #6b7280;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card-content {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #374151;
+            display: none;
+        }
+
+        .card.active .card-content {
+            display: block;
+        }
+
+        .card-content h4 {
+            font-size: 1rem;
+            color: #facc15;
+            margin-bottom: 6px;
+        }
+
+        .card-content p {
+            color: #d1d5db;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* زرار إظهار المعرض */
+        .action-buttons-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .action-btn {
+            padding: 18px 40px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
+            letter-spacing: 0.5px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.5);
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+        }
+
+        /* قسم معرض الصور (مخفي افتراضياً ويظهر عند الضغط) */
+        .gallery-section {
+            display: none;
+            width: 100%;
+            margin-top: 20px;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #facc15;
+            margin-bottom: 40px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
+        }
+
+        /* شبكة عرض الصور (صورتين جنب بعض) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        .memory-card {
+            background: rgba(17, 24, 39, 0.9);
+            border: 1px solid #374151;
+            border-radius: 22px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-6px);
+            border-color: #facc15;
+        }
+
+        .memory-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 15px;
+        }
+
+        .memory-info h3 {
+            color: #facc15;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .memory-info p {
+            color: #ec4899;
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.5;
+            text-shadow: 0 0 10px rgba(236, 72, 153, 0.35);
+        }
+
+        /* Music Player Widget */
+        .music-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(17, 24, 39, 0.95);
+            border: 1px solid #374151;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .music-btn {
+            background: #facc15;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #000;
+        }
+
+        .music-info {
+            font-size: 0.85rem;
+            color: #e5e7eb;
+            text-align: left;
+        }
+
+        @media (max-width: 750px) {
+            .header h1 { font-size: 2.5rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .memory-card img { height: 350px; }
+            .card { width: 100%; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- خلفية تفاعلية طايرة -->
+    <div class="floating-bg" id="floatingBg"></div>
+
+    <div class="main-wrapper">
+        <header class="header">
+            <h1>✨ JANAT 🤍</h1>
+            <div class="date-badge">🎂 10 August 2007</div>
+            <p>Pick Your Birthday Wish & Explore Memories ✨</p>
+        </header>
+
+        <!-- كروت الأمنيات التفاعلية -->
+        <div class="cards-container">
+            <div class="card" onclick="this.classList.toggle('active')">
+                <div class="card-icon">🔮</div>
+                <h3>Wish #1</h3>
+                <span class="click-hint">Click to open</span>
+                <div class="card-content">
+                    <h4>Pure Joy</h4>
+                    <p>كل سنة وأنتي طيبة يا جنات، وعقبال سنين كتير كلها فرحة وراحة بال ونجاح يا رب! ✨🤍</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="this.classList.toggle('active')">
+                <div class="card-icon">✨</div>
+                <h3>Wish #2</h3>
+                <span class="click-hint">Click to open</span>
+                <div class="card-content">
+                    <h4>Endless Success</h4>
+                    <p>سنة جديدة ممتازة تحقق كل اللي بتتمنيه وتوصل كل طموحاتك وأكتر كمان! 🎓🌸</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="this.classList.toggle('active')">
+                <div class="card-icon">🕯️</div>
+                <h3>Wish #3</h3>
+                <span class="click-hint">Click to open</span>
+                <div class="card-content">
+                    <h4>Unbreakable Peace</h4>
+                    <p>ربنا يجعل أيامك الجاية كلها ضحك وخير وسعادة ما تفارقش قلبك أبداً! 🎂🎉</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- زرار فتح وإظهار معرض الصور -->
+        <div class="action-buttons-container">
+            <button class="action-btn" id="toggleGalleryBtn" onclick="toggleGallery()">
+                <span>📸</span> JANAT'S MEMORIES GALLERY ✨
+            </button>
+        </div>
+
+        <!-- قسم المعرض الشبكي (صورتين جنب بعض + الكلام والقلوب) -->
+        <div class="gallery-section" id="gallerySection">
+            <h2 class="section-title">🤍 Capturing Beautiful Moments ✨</h2>
+            
+            <div class="gallery-grid">
+                <div class="memory-card">
+                    <img src="photo0.jpg" alt="Janat Memory 0">
+                    <div class="memory-info">
+                        <h3>Special Day 🎉</h3>
+                        <p dir="rtl">🤍✨ بحبك يحبيبت علي ✨🤍</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photo1.jpg" alt="Janat Memory 1">
+                    <div class="memory-info">
+                        <h3>Sweet Smile 🤍</h3>
+                        <p dir="rtl">💖 بصوا بصوا على الحلويات 💖</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photo2.jpg" alt="Janat Memory 2">
+                    <div class="memory-info">
+                        <h3>Pure Elegance 👑</h3>
+                        <p dir="rtl">😍🔥 تحفهههه 🔥😍</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photo3.jpg" alt="Janat Memory 3">
+                    <div class="memory-info">
+                        <h3>Good Vibes 🎂</h3>
+                        <p dir="rtl">🤍♾️ بحبكككككككك ♾️🤍</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photo4.jpg" alt="Janat Memory 4">
+                    <div class="memory-info">
+                        <h3>Shining Moments 🌟</h3>
+                        <p dir="rtl">✨ عيون علي وروح علي ✨</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photo5.jpg" alt="Janat Memory 5">
+                    <div class="memory-info">
+                        <h3>Golden Times 🎉</h3>
+                        <p dir="rtl">🥰🎂 العمر كله معايا يعيوني 🎂🥰</p>
+                    </div>
+                </div>
+
+                <div class="memory-card" style="grid-column: span 2; max-width: 500px; margin: 0 auto; width: 100%;">
+                    <img src="photo6.jpg" alt="Janat Memory 6">
+                    <div class="memory-info">
+                        <h3>Best Wishes 🌸</h3>
+                        <p dir="rtl">🌸🤍 حلاوتك ودنيتي كلها 🤍🌸</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player Widget -->
+    <div class="music-widget">
+        <button class="music-btn" id="playBtn" onclick="toggleMusic()">⏸</button>
+        <div class="music-info">
+            <strong>Birthday Song 🎶</strong>
+            <div style="font-size:0.75rem; color:#9ca3af;">Playing Now...</div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop src="song.mp3" autoplay></audio>
+
+    <script>
+        const audio = document.getElementById("bgMusic");
+        const playBtn = document.getElementById("playBtn");
+        const gallerySection = document.getElementById("gallerySection");
+        const toggleGalleryBtn = document.getElementById("toggleGalleryBtn");
+
+        window.addEventListener('load', () => {
+            startAudio();
+
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 80,
+                    origin: { y: 0.5 }
+                });
+            }
+
+            const bg = document.getElementById('floatingBg');
+            const symbols = ['🤍', '✨', '🌸', '⭐', '🎈', '💖'];
+            
+            for (let i = 0; i < 20; i++) {
+                const span = document.createElement('div');
+                span.className = 'floating-item';
+                span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                span.style.left = Math.random() * 100 + 'vw';
+                span.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                span.style.animationDelay = (Math.random() * 5) + 's';
+                bg.appendChild(span);
+            }
+        });
+
+        function startAudio() {
+            audio.play().then(() => {
+                playBtn.innerHTML = "⏸";
+            }).catch(() => {
+                document.body.addEventListener('click', () => {
+                    audio.play();
+                    playBtn.innerHTML = "⏸";
+                }, { once: true });
+            });
+        }
+
+        // إظهار وإخفاء شبكة المعرض عند الضغط على الزرار
+        function toggleGallery() {
+            startAudio();
+            if (gallerySection.style.display === "block") {
+                gallerySection.style.display = "none";
+                toggleGalleryBtn.innerHTML = "<span>📸</span> JANAT'S MEMORIES GALLERY ✨";
+            } else {
+                gallerySection.style.display = "block";
+                toggleGalleryBtn.innerHTML = "<span>✨</span> HIDE GALLERY 🤍";
+                gallerySection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = "⏸";
+            } else {
+                audio.pause();
+                playBtn.innerHTML = "▶";
+            }
+        }
+    </script>
+</body>
+</html>

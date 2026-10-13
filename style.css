@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f172a;
+    font-family: 'Poppins', 'Tajawal', sans-serif;
+    color: #f8fafc;
+    overflow-x: hidden;
+}
+
+/* توهج الخلفية الهادئ */
+.candle-glow-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 30%, rgba(251, 191, 36, 0.15) 0%, rgba(15, 23, 42, 0.95) 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 🌟 أنيميشن القلوب والنجوم المتطايرة 🌟 */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+}
+
+.floating-particles span {
+    position: relative;
+    bottom: -100px;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    animation: floatUp calc(125s / var(--i)) linear infinite;
+    filter: drop-shadow(0 0 8px rgba(253, 224, 71, 0.6));
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.8; }
+    100% {
+        transform: translateY(-110vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+.hero-section {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* شكل التورتة والشموع */
+.cake-container {
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.cake-icon {
+    font-size: 4.5rem;
+    display: block;
+    filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6));
+}
+
+.candles-glow {
+    font-size: 1.5rem;
+    margin-top: -10px;
+    letter-spacing: 5px;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+/* العنوان والتاريخ */
+.main-title {
+    font-family: 'Great Vibes', cursive;
+    color: #fde047;
+}
+
+.birth-date-badge {
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fde047;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+}
+
+.hero-subtitle {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+/* الزرار الدافئ */
+.warm-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #ffffff;
+    border: none;
+    padding: 14px 35px;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 25px rgba(245, 158, 11, 0.4);
+    transition: all 0.3s ease;
+}
+
+.warm-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.6);
+}
+
+/* المحتوى المخفي */
+.hidden-story {
+    position: relative;
+    z-index: 1;
+    display: none;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 1.2s ease;
+}
+
+/* كروت الرسائل */
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.message-card {
+    background: rgba(30, 41, 59, 0.7);
+    padding: 20px 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    font-size: 1rem;
+    color: #e2e8f0;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(251, 191, 36, 0.5);
+}
+
+/* 🌟 قسم صورة الطفولة (photo0) 🌟 */
+.baby-spotlight-section {
+    margin: 60px 0 80px 0;
+    text-align: center;
+}
+
+.spotlight-header h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.2rem;
+    color: #fde047;
+    text-shadow: 0 0 15px rgba(253, 224, 71, 0.4);
+}
+
+.spotlight-header p {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.baby-card {
+    background: rgba(30, 41, 59, 0.85);
+    border: 2px solid #fde047;
+    border-radius: 24px;
+    padding: 25px;
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 0 35px rgba(253, 224, 71, 0.25);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.baby-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 45px rgba(253, 224, 71, 0.4);
+}
+
+.baby-frame {
+    width: 100%;
+    height: auto; 
+    max-height: 450px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    border: 1px solid rgba(254, 240, 138, 0.3);
+    background-color: rgba(0, 0, 0, 0.25); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.baby-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
+    display: block;
+}
+
+.baby-details h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 2.2rem;
+    color: #fef08a;
+    margin-bottom: 6px;
+}
+
+.baby-details p {
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* 🖼️ باقي كروت الصور 🖼️ */
+.gallery-section {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    color: #fef08a;
+    margin-bottom: 5px;
+}
+
+.section-desc {
+    color: #94a3b8;
+    margin-bottom: 35px;
+    font-size: 0.95rem;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.photo-card {
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover; 
+    display: block;
+}
+
+.card-text {
+    padding: 20px;
+    text-align: left;
+}
+
+.card-text h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    color: #fde047;
+    margin-bottom: 8px;
+}
+
+.card-text p {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+/* 🔮 تصميم كروت التمنيات التفاعلية (Flip Cards) 🔮 */
+.wishes-section {
+    text-align: center;
+    margin: 80px 0 60px 0;
+}
+
+.wishes-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.wish-card {
+    background-color: transparent;
+    width: 260px;
+    height: 230px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.wish-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.wish-card.flipped .wish-inner {
+    transform: rotateY(180deg);
+}
+
+.wish-front, .wish-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wish-front {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+    border: 2px dashed rgba(253, 224, 71, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.wish-front span {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+}
+
+.wish-front p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    color: #fde047;
+    margin-bottom: 5px;
+}
+
+.wish-front small {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+.wish-back {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border: 2px solid #fde047;
+    color: #f8fafc;
+    transform: rotateY(180deg);
+    box-shadow: 0 0 25px rgba(253, 224, 71, 0.3);
+}
+
+.wish-back span {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.wish-back h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    color: #fde047;
+    margin-bottom: 8px;
+}
+
+.wish-back p {
+    font-size: 0.85rem;
+    color: #e2e8f0;
+    line-height: 1.4;
+}
+
+/* ❤️ استايلات قسم الحب والنَبض الرومانسي ❤️ */
+.love-confession-section {
+    margin: 70px 0 50px 0;
+    text-align: center;
+}
+
+.love-card {
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.15), rgba(15, 23, 42, 0.9));
+    border: 2px solid rgba(244, 63, 94, 0.6);
+    border-radius: 28px;
+    padding: 40px 25px;
+    max-width: 650px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(244, 63, 94, 0.25);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.pulsing-heart {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: heartPulse 1.4s infinite ease-in-out;
+    filter: drop-shadow(0 0 18px rgba(244, 63, 94, 0.8));
+}
+
+.love-title {
+    font-family: 'Reem Kufi', 'Tajawal', sans-serif;
+    font-size: 2.2rem;
+    color: #fef08a;
+    text-shadow: 0 0 20px rgba(254, 240, 138, 0.6);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.love-english {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    color: #fda4af;
+    margin-bottom: 20px;
+}
+
+.heart-sparks span {
+    font-size: 1.3rem;
+    margin: 0 6px;
+    display: inline-block;
+    animation: floatSpark 2s infinite alternate;
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+    60% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes floatSpark {
+    0% { transform: translateY(0); opacity: 0.6; }
+    100% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* الأنيميشن العامة */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+    from { opacity: 0.6; filter: drop-shadow(0 0 5px #f59e0b); }
+    to { opacity: 1; filter: drop-shadow(0 0 15px #fde047); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
